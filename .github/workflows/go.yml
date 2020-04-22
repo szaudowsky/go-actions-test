@@ -40,16 +40,25 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get gopherbadger
-        run: go get -u -v github.com/jpoles1/gopherbadger
       - name: Run tests
         run: |
           make race
-          echo "::set-env name=COVERAGE::$(go env GOPATH tool cover -func=coverage.out | tail -n 1 | awk '{print $3}' | sed 's/%//')"
-          echo $COVERAGE
-          $(go env GOPATH)/bin/gopherbadger -manualcov=$COVERAGE
+      - name: code coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage.out # optional
+            
+          
+
+
         
 
      

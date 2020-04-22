@@ -33,5 +33,6 @@ test: ## Run all unit tests and generate coverage report
 	go tool cover -html=coverage.out -o coverage_report.html
 
 race: ## Run all unit tests with -race flag
-	go test -race -coverprofile coverage.out -v ./...
+	go test -race -coverprofile=coverage.out -covermode=atomic
 	go tool cover -html=coverage.out -o coverage_report.html
+	
