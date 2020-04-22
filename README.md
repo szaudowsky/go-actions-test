@@ -1,0 +1,1 @@
+[![codecov](https://codecov.io/gh/szaudowsky/go-actions-test/branch/master/graph/badge.svg)](https://codecov.io/gh/szaudowsky/go-actions-test)
